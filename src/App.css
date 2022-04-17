@@ -1,38 +1,33 @@
+
+html,body{
+  color: #fff;
+  background-color: #1b1b32;
+  
+}
+
 .App {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/*estilos para la lista de tareas*/
+h1{
+  color: #1b1b32;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 20px 0;
+  font-family: Helvetica, arial, sans-serif; /*esta renderizando arial por el momento*/
+}
+.tareas-lista-principal{
+  width: 85%;
+  margin:45px auto;
+  min-height: 500px;
+  background-color: #d0d0d5;
+  border-radius: 26px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+ol{
+  padding:0px;
 }
