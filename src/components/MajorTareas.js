@@ -10,16 +10,7 @@ import Tareaformulario from './Tareaformulario'
 import '../stylesheets/Listatareas.css'
 
 export default function MajorTareas() {
-  const [tareas, setTareas] = useState([
-  {
-    texto: 'hola',
-    completada: false,
-  },
-  {
-    texto: 'chao',
-    completada: true,
-  }
-])
+  const [tareas, setTareas] = useState([])
 
 const agregarTareas = tarea => {
   console.log('tarea agregada')
@@ -39,7 +30,6 @@ const agregarTareas = tarea => {
               texto={el.texto}
               completada = {el.completada}
               key = {i}
-
               />
 
             )

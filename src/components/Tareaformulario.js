@@ -1,6 +1,8 @@
 import React,{useState} from 'react'
 import '../stylesheets/Tareaform.css'
 
+// paquete para generar un id único
+import { v4 as uuidv4 } from  'uuid'
 
 
 export default function Tareaformulario(props) {
@@ -13,11 +15,16 @@ export default function Tareaformulario(props) {
 
 	const handlerEnvio = e => {
 		const tareaNueva = {
-			id: '123',
+			// se genera un identificador único
+			id: uuidv4(),
 			texto: input,
+			completada: false
 		}
 		e.preventDefault();
+		// esta prop.agregar es el setestado de MajorTareas (el array)
+		// props.actuales es el array del estado
 		props.agregar([...props.actuales, tareaNueva])
+		console.log(tareaNueva)
 		return tareaNueva;
 	}
 
