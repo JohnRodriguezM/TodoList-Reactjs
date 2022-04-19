@@ -9,16 +9,17 @@ import { FaTrashAlt } from 'react-icons/fa';
 export default function Tarea({ id, texto, completada, completarTarea, eliminarTarea }) {
   return (
     <div 
+    
     // le paso el id para saber que tarea es que voy a marcar como completada
-    onClick={() => completarTarea(id)}
+    onDoubleClick={() => completarTarea(id)}
     className={completada ? ' tarea-contenedor  completada' : 'tarea-contenedor' }>
       <ol className='tarea-texto'>
       {texto}
       </ol>
       <div>
-        <FaTrashAlt
+        <FaTrashAlt onClick = {()=> eliminarTarea(id)}
          // le paso el id para saber que tarea es que voy a eliminar
-        onClick = {()=> eliminarTarea(id)}
+        
         className='delete-tareas' />
       </div>
     </div>

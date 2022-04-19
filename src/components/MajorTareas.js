@@ -6,6 +6,7 @@ import Tarea from './Tarea'
 import Tareaformulario from './Tareaformulario'
 
 //importacion componentes de css
+import { v4 as uuidv4 } from  'uuid'
 
 import '../stylesheets/Listatareas.css'
 
@@ -13,14 +14,35 @@ export default function MajorTareas() {
   const [tareas, setTareas] = useState([])
 
 const agregarTareas = tarea => {
-  console.log('tarea agregada')
-  console.log(tarea)}
+  setTareas(tarea)  
+}
+
+const eliminarTarea = id => {
+  const tareasActualizadas = tareas.filter(el => el.id !== id)
+  setTareas(tareasActualizadas)
+  console.log(tareasActualizadas)
+}
+
+const completada = (id) => {
+  const tareasActualizadas = tareas.map(tarea => {
+    if(tarea.id === id) {
+      tarea.completada = !tarea.completada
+    }
+    return tarea;
+  })
+  setTareas(tareasActualizadas)
+}
+
+const filtrarTareas = id => {
+  
+}
 
   return (
     <>
       <Tareaformulario
-      agregar = {setTareas}
-      actuales = {tareas} />
+      agregar = {agregarTareas}
+      actuales = {tareas}
+      filtrarTarea = {''} />
       <div className='tareas-lista'>
       {/* el lo voy a pasar como un objeto al array */}
         {
@@ -29,7 +51,10 @@ const agregarTareas = tarea => {
               <Tarea 
               texto={el.texto}
               completada = {el.completada}
-              key = {i}
+              key = {el.id}
+              id = {el.id}
+              completarTarea = {completada}
+              eliminarTarea = {eliminarTarea}
               />
 
             )
