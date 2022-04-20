@@ -15,20 +15,21 @@
 
 /*Colores*/
 
-/* .tarea-contenedor .completada:nth-child(3n + 1){
-  background-color: #1b1b32;
+ .tarea-contenedor:nth-child(3n + 1){
+  background: #1b1b32;
 }
 
-.tarea-contenedor .completada:nth-child(3n + 2){
-  background-color: #2a2a40;
+.tarea-contenedor:nth-child(3n + 2){
+  background: #2a2a40;
 }
-.tarea-contenedor .completada:nth-child(3n + 3){
-  background-color: #3b3b4f;
+.tarea-contenedor:nth-child(3n + 3){
+  background: #3b3b4f;
 }
- */
+
 
 
 .tarea-texto {
+  list-style: none;
   user-select: none;
   word-break: break-all;
   width: 100%;
@@ -49,7 +50,7 @@
 
 /*cuando la tarea es completada la clase completada se agrega*/
 .completada{
-    background-color:#5a01a7;
+    color:red;
     transform: scale(.9);
     text-decoration: line-through;
     transition: all .6s ease-in-out;

@@ -20,7 +20,7 @@ h1{
   font-size: 22px;
   font-weight: bold;
   margin: 20px 0;
-  font-family: Helvetica, arial, sans-serif; /*esta renderizando arial por el momento*/
+  font-family: Times, "Times New Roman",; /*esta renderizando arial por el momento*/
 }
 .tareas-lista-principal{
   width: 85%;
