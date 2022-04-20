@@ -33,9 +33,8 @@ const completada = (id) => {
   setTareas(tareasActualizadas)
 }
 
-const filtrarTareas = id => {
-  
-}
+
+
 
   return (
     <>

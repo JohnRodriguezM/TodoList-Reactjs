@@ -7,12 +7,14 @@ import { FaTrashAlt } from 'react-icons/fa';
 // el prop completarTarea es una funcion que me permite marcar la tarea como completada
 // el prop eliminarTarea es una funcion que me permite elimar la tarea
 export default function Tarea({ id, texto, completada, completarTarea, eliminarTarea }) {
+  
   return (
+
     <div 
     
     // le paso el id para saber que tarea es que voy a marcar como completada
     onDoubleClick={() => completarTarea(id)}
-    className={completada ? ' tarea-contenedor  completada' : 'tarea-contenedor' }>
+    className={completada ? ' tarea-contenedor completada' : 'tarea-contenedor' }>
       <ol className='tarea-texto'>
       {texto}
       </ol>

@@ -1,20 +1,26 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import '../stylesheets/Tareaform.css'
-
 // paquete para generar un id único
-import { v4 as uuidv4 } from  'uuid'
+import { v4 as uuidv4 } from 'uuid'
 
 
 export default function Tareaformulario(props) {
-	const [input,setInput] = useState('')
+	const [input, setInput] = useState('')
 
 	const handlerCambio = e => {
 		setInput(e.target.value)
-		console.log(e.target.value)
-		/* props.agregar(props.actuales.filter(el => el === input)) */
-		const busqueda = props.actuales.filter(el =>  el.texto === el.texto)
-		props.agregar(busqueda)
 	}
+
+	/* const completada = (id) => {
+		const tareasActualizadas = tareas.map(tarea => {
+		  if(tarea.id === id) {
+			tarea.completada = !tarea.completada
+		  }
+		  return tarea;
+		})
+		setTareas(tareasActualizadas)
+	  }
+ */
 
 	const handlerEnvio = e => {
 		e.preventDefault();
@@ -26,20 +32,19 @@ export default function Tareaformulario(props) {
 		}
 		// esta prop.agregar es el setestado de MajorTareas (el array)
 		// props.actuales es el array del estado
-		if(tareaNueva.texto.length === 0){
+		if (tareaNueva.texto.length === 0) {
 			alert('agg texto')
-		}else{
+		} else {
 			props.agregar([tareaNueva, ...props.actuales])
 		}
 		e.target.reset()
-		console.log(tareaNueva)
+		e.target.focus()
 		return tareaNueva;
 	}
 
-
 	return (
 		<form className="tarea-formulario"
-		onSubmit={handlerEnvio}
+			onSubmit={handlerEnvio}
 		>
 			<input
 				className="tarea-input"
