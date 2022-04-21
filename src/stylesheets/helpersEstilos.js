@@ -1,6 +1,6 @@
 const ol = {
-    TextDecoretion: 'none',
-    listStyle : 'none'
+	TextDecoretion: 'none',
+	listStyle: 'none'
 }
 
-export {ol};
+export { ol };

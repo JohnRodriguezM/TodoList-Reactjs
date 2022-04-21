@@ -1,20 +1,18 @@
 .tarea-formulario {
-   margin: 20px auto;
-   border-radius: 15px;
+  margin: 20px auto;
+  border-radius: 15px;
 }
 
-.tarea-input{
-    height:26px;
-    border: 1px solid #00471b;
-    padding-left: 10px;
-
+.tarea-input {
+  height: 26px;
+  border: 1px solid #00471b;
+  padding-left: 10px;
 }
 
-.tarea-boton{
-    height:30px;
-    border: 1px solid #00471b;
-    background-color: #00471b;
-    color:white;
-    cursor: pointer;
-
+.tarea-boton {
+  height: 30px;
+  border: 1px solid #00471b;
+  background-color: #00471b;
+  color: white;
+  cursor: pointer;
 }

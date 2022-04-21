@@ -1,6 +1,6 @@
-.tareas-lista{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top:15px;
+.tareas-lista {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 15px;
 }

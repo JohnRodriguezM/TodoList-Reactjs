@@ -3,7 +3,7 @@
   margin: 10px auto;
   min-height: 90%;
   background-color: #1b1b32;
-  padding: 2px 10px;
+  padding: 12px 0px 12px 12px;
   display: grid;
   grid-template-columns: 82% 12%;
   gap: 8px;
@@ -41,9 +41,10 @@
 }
 
 .delete-tareas:hover {
-  transform: scale(1.2);
+  transform: scale(1.5);
+  /* transform: rotate(360deg); */
   color: red;
-  transition: all 0.6s ease;
+  transition: all .5s ease;
   cursor: pointer;
 }
 

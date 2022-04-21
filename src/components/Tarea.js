@@ -2,19 +2,23 @@
 
 // se importa dependencia para iconos
 import { AiFillDelete } from "react-icons/ai";
+import { FaTimes } from "react-icons/fa"
+import { FaReact } from "react-icons/fa"
 
 
-function Tarea({estado,setEstado,texto,id,completed}) {
+function Tarea({ estado, setEstado, texto, id, completed, tareaCompleta, eliminarTarea }) {
   return (
-      <>
-      <div className= {completed? 'tarea-contenedor completada' : 'tarea-contenedor'}>
-    <li className = 'tarea-texto'>{texto}</li>
+    <div
+      className={completed ? 'tarea-contenedor completada' : 'tarea-contenedor'}
+      onClickCapture = {()=> tareaCompleta(id)}
+      >
+      <li className='tarea-texto'>{texto}</li>
 
-        <AiFillDelete className = 'delete-tareas'/>
-    
-      </div>
-   
-      </>
+      <FaTimes 
+      className='delete-tareas'
+      onClick = {()=> eliminarTarea(id)} />
+
+    </div>
   )
 }
 
