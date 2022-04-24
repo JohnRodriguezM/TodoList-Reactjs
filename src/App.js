@@ -1,6 +1,6 @@
 // importacion de componentes para trabajar
 
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 // se importan los componentes de react
 import Tarea from './components/Tarea'
@@ -21,10 +21,33 @@ import { v4 as uuidv4 } from 'uuid';
 function App() {
   // luego puedo pasar los estado a los componentes para usarlos directamente allí
   const [input, setInput] = useState('')
-  const [array, setArray] = useState([])
+  const [array, setArray] = useState(
+    JSON.parse(localStorage.getItem('array')) || []
+  )
+
+  // se realiza la implementation del localStorage, la funcion toma dos paramaetros 
+  // el elemento es el array
+  // valor es el equivalente al nuevoElemento(obj que se agrega al array) creado dentro de la funcion envio
+  const setLocalStorage = (elemento,valor) => {
+    try{
+      // modifico el array con el nuevo elemento, añadiendoselo
+      valor.texto.length > 0 ? setArray([...elemento,valor]) : alert('agg txt')
+      // envio el array al localStorage
+      window.localStorage.setItem('array', JSON.stringify([...elemento,valor]))
+    }
+    catch(err){
+      console.error(err)
+    }
+  }
+
+
+
+
   // funciones para el componente del formulario
   const cambio = e => {
+    // recibo el valor del input
     let valorInput = e.target.value;
+    // se modifica el estado del input, el cual se va a usar para ser enviado como texto al array que se mapea
     setInput(valorInput)
   }
 
@@ -33,16 +56,21 @@ function App() {
     const nuevoElemento = {
       texto: input, id: uuidv4(), completed: false
     }
+    setLocalStorage(array, nuevoElemento)
     /* console.log(nuevoElemento) */
-    nuevoElemento.texto.length > 0 ? setArray([...array, nuevoElemento]) : alert('agg texto')
+
+
+    // YA CREADO EL LOCAL STORAGE SE HACE INNECSARIO LLAMAR A SETARRAY DE NUEVO
+   /*  nuevoElemento.texto.length > 0 ? setArray([...array, nuevoElemento]) : alert('agg texto') */
     // con la declaracion del setTimeout permito que el dato alcance a ingresar al valor del estado input pero luego limpio el valor del input para que los elementos puedan ser filtrados de manera adecuada
-    setTimeout(() => setInput(''),0)
+    setTimeout(() => setInput(''), 100)
     e.target.reset()
     e.target.focus()
     return nuevoElemento;
   }
   // funcion para eliminar todo
   const eliminar = id => {
+    // si el.id es diferente del id del elemento al que le hago click, filtrame esos elementos y siguelos dejando como no completados
     const filtro = array.filter(el => el.id !== id)
     setArray(filtro)
   }
@@ -57,77 +85,85 @@ function App() {
     setArray(completado)
   }
 
-// todos completado
+  // todos completado
 
-const tareasCompletadas = array.filter(el => el.completed).length;
-const totalTareas = array.length
+  const tareasCompletadas = array.filter(el => el.completed).length;
+  const totalTareas = array.length
+  
+  // se crea un arreglo vacio para almacenar los elementos que sean filtrados,
+  //funcion apra filtrar las tareas en la busqueda
+  
+ /*  let todosSearch = []
+  const buscarTarea = () => {
+    if (!input.length === 0) {
+      todosSearch = array;
+      console.log(todosSearch)
+    } else {
+      todosSearch = array.filter(el => {
+        const texto = el.texto.toLowerCase()
+        console.log(texto)
+        const textoBuscado = input.toLowerCase()
+        console.log(textoBuscado)
 
-
-
-  let todosSearch = []
-
-  if (!input.length === 1) {
-    todosSearch = array;
-    console.log(todosSearch)
-  } else {
-    todosSearch = array.filter(el => {
-      const texto = el.texto.toLowerCase()
-      console.log(texto)
-      const textoBuscado = input.toLowerCase()
-      console.log(textoBuscado)
-
-      return texto.includes(textoBuscado)
-    })
-  }
-
-
-
-
-
+        return texto.includes(textoBuscado)
+      })
+    }
+  } */
   return (
     <main className="App">
       <div className='tareas-lista-principal'>
+      {/* se desiste del buscador de tareas momentaneamente, (buscarTarea = {buscarTarea}) */}
         <h1>Lista de tareas</h1>
         <Tareaformulario
           cambio={cambio}
           envio={envio}
-          estado={input}
-          setEstado={setInput}
+          estadoInput={input}
+          setEstadoInput={setInput}
+          estadoArray = {array}
+          setEstadoArray={setArray}
 
         />
         <h2>haz completado {tareasCompletadas} de {totalTareas}</h2>
+       {/*  si el valor de el estado input, que en realidad es el e.targer.value es 0 se filtra se mapea el estado original */}
         {
-          input.length === 0 ? 
+          input.length === 0 ?
             array.map((el, i) => {
-            return (
-              <Tarea
-                estado={array}
-                setEstado={setArray}
-                texto={el.texto}
-                id={el.id}
-                completed={el.completed}
-                key={el.id}
-                eliminarTarea={eliminar}
-                tareaCompleta={marcarComplete}
-              />
-            )
-          })
-          : todosSearch.map((el, i) => {
-            return (
-              <Tarea
-                estado={array}
-                setEstado={setArray}
-                texto={el.texto}
-                id={el.id}
-                completed={el.completed}
-                key={el.id}
-                eliminarTarea={eliminar}
-                tareaCompleta={marcarComplete}
-              />
-            )
-          })
+              return (
+                <Tarea
+                  estado={array}
+                  setEstado={setArray}
+                  texto={el.texto}
+                  id={el.id}
+                  completed={el.completed}
+                  key={el.id}
+                  eliminarTarea={eliminar}
+                  tareaCompleta={marcarComplete}
 
-          }
+                />
+              )
+            })
+            
+            : array.map((el, i) => {
+               // eslint-disable-next-line no-lone-blocks
+               {/* en vez de array.map deberia ir todosSearch pero se reemplaza de manerea temporal */}
+               // eslint-disable-next-line no-lone-blocks
+               {/*  si el valor de el estado input, que en realidad es el e.targer.value es > 0 se mapea el array "copiado", para buscar tarea en el onchange del input*/}
+              return (
+                <Tarea
+                  estado={array}
+                  setEstado={setArray}
+                  texto={el.texto}
+                  id={el.id}
+                  completed={el.completed}
+                  key={el.id}
+                  eliminarTarea={eliminar}
+                  tareaCompleta={marcarComplete}
+                />
+              )
+            })
+            
+
+        }
 
       </div>
     </main>

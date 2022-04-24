@@ -1,9 +1,8 @@
 // no es necesario importar react
 
-// se importa dependencia para iconos
-import { AiFillDelete } from "react-icons/ai";
+// se importa dependencia para iconos -- react-icons
 import { FaTimes } from "react-icons/fa"
-import { FaReact } from "react-icons/fa"
+
 
 
 function Tarea({ estado, setEstado, texto, id, completed, tareaCompleta, eliminarTarea }) {

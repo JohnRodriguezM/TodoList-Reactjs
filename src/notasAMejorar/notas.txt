@@ -1,0 +1,4 @@
+como hacer un custom hook
+
+1. import { useState } from 'react';
+
