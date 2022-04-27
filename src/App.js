@@ -22,7 +22,7 @@ function App() {
   // luego puedo pasar los estado a los componentes para usarlos directamente allí
   const [input, setInput] = useState('')
   const [array, setArray] = useState(
-    JSON.parse(localStorage.getItem('array')) || []
+     JSON.parse(localStorage.getItem('array')) || []
   )
 
   // se realiza la implementation del localStorage, la funcion toma dos paramaetros 
@@ -73,6 +73,8 @@ function App() {
     // si el.id es diferente del id del elemento al que le hago click, filtrame esos elementos y siguelos dejando como no completados
     const filtro = array.filter(el => el.id !== id)
     setArray(filtro)
+    // aqui vuelvo a hacer uso del localStorage para que se elimine el elemento, y en el array que traiga al refrescar la página ya esté actualizado y no solo en el momento que tengo sin rfrescar la pagina, PARA ESA FUNCION HAGO USO DEL SETARRAY(FILTRO)
+    window.localStorage.setItem('array', JSON.stringify(filtro))
   }
   // funcion para marcar como completado el todo
   const marcarComplete = id => {
@@ -83,6 +85,8 @@ function App() {
       return el;
     })
     setArray(completado)
+       // aqui vuelvo a hacer uso del localStorage para que se filtren los elementos completados, y en el array que traiga al refrescar la página ya esté actualizado y no solo en el momento que tengo sin rfrescar la pagina, PARA ESA FUNCION HAGO USO DEL SETARRAY(COMPLEATADO)
+    window.localStorage.setItem('array', JSON.stringify(completado))
   }
 
   // todos completado
